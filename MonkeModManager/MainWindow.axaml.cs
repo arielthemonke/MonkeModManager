@@ -917,10 +917,13 @@ public partial class MainWindow : Window
     
     private void BellButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        notificationPopup.IsOpen = !notificationPopup.IsOpen;
+        if (notificationManager.Notifications.Count > 0)
+        {
+            notificationPopup.IsOpen = !notificationPopup.IsOpen;
 
-        if (notificationPopup.IsOpen)
-            notificationManager.MarkAllAsRead();
+            if (notificationPopup.IsOpen)
+                notificationManager.MarkAllAsRead();
+        }
     }
 
     private StackPanel BuildNotificationList()
